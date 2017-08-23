@@ -23,14 +23,14 @@ const proc = new p5(function(p){
 
   const synth = new Tone.MultiPlayer({
     urls: {
-      'kick': './samples/kick.wav',
-      'snare': './samples/snare.wav',
-      'clap': './samples/clap.wav',
-      'hat': './samples/hat.wav',
-      'cymbal': './samples/cymbal.wav',
-      'tom1': './samples/tom1.wav',
-      'tom2': './samples/tom2.wav',
-      'tom3': './samples/tom3.wav'
+      'kick': './samples/kick.mp3',
+      'snare': './samples/snare.mp3',
+      'clap': './samples/clap.mp3',
+      'hat': './samples/hat.mp3',
+      'cymbal': './samples/cymbal.mp3',
+      'tom1': './samples/tom1.mp3',
+      'tom2': './samples/tom2.mp3',
+      'tom3': './samples/tom3.mp3'
     },
     volume: -10,
     fadeOut: 0.1,
