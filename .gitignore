@@ -1,4 +1,5 @@
 node_modules
+src/wav_samples
 build/bundle.js
 *.log
 .DS_store
