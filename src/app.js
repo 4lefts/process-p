@@ -7,7 +7,7 @@ const proc = new p5(function(p){
   let tracks = 8
   let steps = 16
   let grid = []
-  const soundOptions = ['kick', 'snare', 'clap', 'hat', 'cymbal', 'tom1', 'tom2', 'tom3' ]
+  const soundOptions = ['kick', 'snare', 'clap', 'hat', 'clave', 'tom3', 'tom2', 'tom1' ]
   let bgColour, gridColour, highlightColour, controlColour
   let margin = 10
   let isPlaying = false
@@ -21,20 +21,28 @@ const proc = new p5(function(p){
     wet: 0.15
   }).toMaster()
 
+  const comp = new Tone.Compressor({
+    ratio: 12,
+    threshold: -30,
+    release: 0.3,
+    attack: 0.02,
+    knee: 30
+  })
+
   const synth = new Tone.MultiPlayer({
     urls: {
       'kick': './samples/kick.mp3',
       'snare': './samples/snare.mp3',
       'clap': './samples/clap.mp3',
       'hat': './samples/hat.mp3',
-      'cymbal': './samples/cymbal.mp3',
-      'tom1': './samples/tom1.mp3',
+      'clave': './samples/clave.mp3',
+      'tom3': './samples/tom3.mp3',
       'tom2': './samples/tom2.mp3',
-      'tom3': './samples/tom3.mp3'
+      'tom1': './samples/tom1.mp3',
     },
     volume: -10,
     fadeOut: 0.1,
-  }).connect(verb)
+  }).chain(comp, verb)
 
   // sequencer clock
   const loop = new Tone.Sequence(function(time, step){
@@ -43,7 +51,7 @@ const proc = new p5(function(p){
     for(let i = column.length - 1; i >= 0; i--){
       if(column[i] > 0){
         //buffer, time, offset, duration, pitch, gain
-        synth.start(soundOptions[i], time, 0, '16n', 0, column[i])
+        synth.start(soundOptions[i], time, 0, '8n', 0, column[i])
       }
     }
   }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16n')
