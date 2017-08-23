@@ -1,0 +1,7 @@
+node_modules
+build/bundle.js
+*.log
+.DS_store
+*~
+*.tmp
+*.ini
