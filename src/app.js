@@ -9,7 +9,7 @@ const proc = new p5(function(p){
   let grid = []
   const soundOptions = ['kick', 'snare', 'clap', 'hat', 'clave', 'tom3', 'tom2', 'tom1' ]
   let bgColour, gridColour, highlightColour, controlColour
-  let margin = 10
+  let margin = 5
   let isPlaying = false
   let tempo = 120
   let counter = 0 //nb counter is used for gui, not audio scheduling
@@ -72,6 +72,7 @@ const proc = new p5(function(p){
     p.background(bgColour)
     p.drawPlayBar()
     p.drawCells()
+    p.drawLabels(soundOptions)
     p.drawPlayButton()
     p.drawNumber(2, 'bpm', tempo, editingTempo)
     p.drawInfo()
@@ -134,6 +135,17 @@ const proc = new p5(function(p){
       p.rect(5, 5, 90, 90)
     } else {
       p.triangle(5, 5, 95, 50, 5, 95)
+    }
+    p.pop()
+  }
+
+  p.drawLabels = function(labels){
+    p.push()
+    for(let i = labels.length - 1; i >= 0; i--){
+      p.noStroke()
+      p.fill(gridColour)
+      p.textAlign(p.LEFT)
+      p.text(labels[i], margin, (cellSz * (i + 1)) - margin)
     }
     p.pop()
   }
